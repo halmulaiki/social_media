@@ -1,0 +1,44 @@
+
+<head> 
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+<% if flash[:error] %>
+    <ol>
+    <% flash[:error].each do |err| %>
+        <li><%= err %></li>
+    <% end %>
+    </ol>
+<% end %>
+<nav>
+  <a href="/login">Log In</a>
+</nav>
+<div class="modal">
+
+
+<form class="modal-content" action='/signup' method='post' class='signupForm'>
+   <div class= "container">
+         <h1>Sign Up</h1>
+              <p>Please fill in this form to create an account.</p>
+                   <hr>
+               <label><b>First Name</b></label><br>
+                  <input type="text" placeholder="First Name" name="user[firstname]" required><br>
+               <label ><b>Last Name</b></label><br>
+                 <input type="text" placeholder="Last Name" name="user[lastname]" required><br>
+              <label for="uname"><b>Username</b></label><br>
+                  <input type="text" placeholder="UserName" name="user[username]" required><br>
+              <label><b>Email</b></label><br>
+                  <input type="email" placeholder="Email" name="user[email]" required><br>
+              <label>Enter your date of birth</label><br>
+                  <input class="" type="date" name="user[birthday]"><br>
+              <label for="uname"><b>Password</b></label><br>
+                  <input type="password" placeholder="Password" name="user[password]" required><br>
+                  <div class="clearfix">
+        <button type="submit" class="signupbtn">Sign Up</button>
+        </div>
+        <div class="loginif"><p class="">Have an account? <a href="/login">Log in</a></p></div>
+ </div>
+</form>
+</div>
+</body>
