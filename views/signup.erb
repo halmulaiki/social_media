@@ -1,9 +1,9 @@
 
-<head> 
+ <head> 
     <link rel="stylesheet" href="main.css">
 </head>
 
-<body>
+<body> 
 <% if flash[:error] %>
     <ol>
     <% flash[:error].each do |err| %>
@@ -14,11 +14,11 @@
 <nav>
   <a href="/login">Log In</a>
 </nav>
-<div class="modal">
+<div class="signup1">
 
 
-<form class="modal-content" action='/signup' method='post' class='signupForm'>
-   <div class= "container">
+<form class="signup2" action='/signup' method='post' class='signupForm'>
+   <div class= "containsignup">
          <h1>Sign Up</h1>
               <p>Please fill in this form to create an account.</p>
                    <hr>
@@ -41,4 +41,4 @@
  </div>
 </form>
 </div>
-</body>
+

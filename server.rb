@@ -4,7 +4,7 @@ require "sinatra/flash"
 
 require"./models"
 set :port , 3000
-set :database, {adapter: "sqlite3", database: "data.sqlite3"}
+set :database, {adapter: "postgresql", encoding: 'unicode', database: "mediaweb"}
 
 enable :sessions
 
@@ -16,14 +16,13 @@ get '/login' do
       erb :login
 end
 post '/login'do
- @user = User.find_by(email: params[:email])
+ @user = User.find_by(username: params[:username])
  given_password = params[:password]
  if @user.password == given_password
     session[:user_id]= @user.id 
-    redirect %(/profile/#{@user.id})
+    redirect %(/profile/#{@user.lastname})
     else 
-    flash[:error] = "Correct email, but wrong password. Did you mean: #{user.password}
-    only "
+    flash[:error] = "Correct email, but wrong password. "
  
   end 
 
@@ -32,15 +31,16 @@ get '/logout'do
  session.clear
  redirect '/login'
 end
-post '/logout' do 
-  session.clear
-  p "User Logged out Successfully"
-  redirect '/login'
-end 
-get '/' do
+# post '/logout' do 
+#   #session[:user_id] = nil
+#   session.clear
+#   p "User Logged out Successfully"
+#   redirect '/login'
+# end 
+get '/signup' do
     erb :signup
   end
-post '/' do
+post '/signup' do
   puts params
   @user =User.new(params[:user])
   puts @user
@@ -48,20 +48,29 @@ post '/' do
      @user.save
      puts @user.id
      puts 'REDIRECT NOW!!!'
-    redirect %(/profile/#{@user.id})
+    redirect %(/profile/#{@user.lastname})
   else
     flash[:error] = @user.errors.full_messages
-    redirect '/'
+    redirect '/login'
   end
   p para
 end
-get '/profile/:id' do
-  @user = User.find(params[:id])
-    #redirect '/' unless session[:user_id]
-    erb :profile
-rescue ActiveRecord::RecordNotFound
-  puts "erroe14"
-  erb :home
-
-  #end
+get '/profile/:lastname' do
+  if (session[:user_id]==nil)
+    redirect '/login'
+  end
+  @user = User.find(params[:username])
+   
+  erb :profile
+    
+  rescue ActiveRecord::RecordNotFound 
+   puts "error 14"
+   erb :feed
+  end
+ 
+get '/feed'do
+if (session[:user_id]==nil)
+  redirect '/login'
+ erb :feed
+end
 end

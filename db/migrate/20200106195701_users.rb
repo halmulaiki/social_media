@@ -7,7 +7,6 @@ class Users < ActiveRecord::Migration[6.0]
       t.string :email
       t.string :password
       t.datetime :birthday
-    end
+      end
   end
 end
-
