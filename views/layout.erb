@@ -2,7 +2,7 @@
 <head>
 <title></title>
  <link rel="stylesheet" href="main.css">
-   <!-- Theme Made By www.w3schools.com -->
+  
   <title>Bootstrap Theme Company Page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,16 +21,18 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#myPage">Logo</a>
+      <a class="navbar-brand" href="#myPage"><img src='./image/logo.png' width=41px height=35px></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
+       <% if session[:user_id] %>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/profile/:lastname">Profile</a></li>
+        <li><a href='/profile/:lastname'>Profile</a></li>
         <li><a href="#services">Delete Account</a></li>
         <li><a href="/feed">Feed</a></li>
         <li><a href="#info">Account INFO</a></li>
         <li><a href="#contact">Change Password</a></li>
         <li><a href="/logout">logout</a></li>
+        <%end%>
         
       </ul>
     </div>
