@@ -5,7 +5,8 @@ class Posts < ActiveRecord::Migration[6.0]
       t.string :username
       t.string :title
       t.text :body
-      t.timestamps
+      t.timestamps 
+      
       t.string :time
       end      
   end

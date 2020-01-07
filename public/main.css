@@ -1,7 +1,7 @@
 body {
   font: 400 15px Lato, sans-serif;
   line-height: 1.8;
-  
+  margin: 0;
 }
 h2 {
   font-size: 24px;
@@ -36,70 +36,27 @@ h4 {
   font-size: 200px;
 }
 .navbar {
-  margin-bottom: 0;
-  background-color: rgb(5, 12, 68);
-  z-index: 9999;
-  border: 0;
+  display:grid;
+  grid-template-columns: 100px 100px 100px 100px 100px 100px;
+ justify-content: flex-start;
   font-size: 12px !important;
   line-height: 1.42857143 !important;
   letter-spacing: 4px;
-  border-radius: 0;
   font-family: Montserrat, sans-serif;
+  margin-top: 17px;
 }
-.navbar li a, .navbar .navbar-brand {
-  color: #fff !important;
+.nav{
+  display:grid;
+  grid-template-columns: 100px 100px 100px 100px 100px 100px;
+
+  margin:0;
+  background-color: rgb(5, 12, 68);
 }
-.navbar-nav li a:hover, .navbar-nav li.active a {
-  color: #f4511e !important;
-  background-color: #fff !important;
+.navbar a{
+  text-decoration:none;
+  color:#ccc;
 }
-.navbar-default .navbar-toggle {
-  border-color: transparent;
-  color: #fff !important;
-}
-.slideanim {visibility:hidden;}
-.slide {
-  animation-name: slide;
-  -webkit-animation-name: slide;
-  animation-duration: 1s;
-  -webkit-animation-duration: 1s;
-  visibility: visible;
-}
-@keyframes slide {
-  0% {
-    opacity: 0;
-    transform: translateY(70%);
-  } 
-  100% {
-    opacity: 1;
-    transform: translateY(0%);
-  }
-}
-@-webkit-keyframes slide {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(70%);
-  } 
-  100% {
-    opacity: 1;
-    -webkit-transform: translateY(0%);
-  }
-}
-@media screen and (max-width: 768px) {
-  .col-sm-4 {
-    text-align: center;
-    margin: 25px 0;
-  }
-  .btn-lg {
-    width: 100%;
-    margin-bottom: 35px;
-  }
-}
-@media screen and (max-width: 480px) {
-  .logo {
-    font-size: 150px;
-  }
-}
+
 
 
 .signup {font-family: Arial, Helvetica, sans-serif;}
