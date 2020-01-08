@@ -9,9 +9,9 @@ set :database, {adapter: "postgresql", encoding: 'unicode', database: "mediaweb"
 enable :sessions
 
 
-# get '/' do
-#     erb:home
-# end
+get '/' do
+    erb :first
+ end
 get '/login' do
       erb :login
 end
