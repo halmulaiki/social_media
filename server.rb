@@ -97,12 +97,14 @@ end
 @user = User.find(session[:user_id])
 @posts =Post.all
 @lastname = @user.lastname
+
 erb :feed
 end
 
 post '/feed'do
 @user = User.find(session[:user_id])
 @post =Post.new(title: params[:title], body: params[:body] , username: @user.username)
+@post.time= Time.now
 if @post.valid?
   @post.save
   @posts =Post.all
