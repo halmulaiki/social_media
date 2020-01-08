@@ -3,7 +3,7 @@ require "sinatra"
 require "sinatra/flash"
 
 require"./models"
-set :port , 3000
+
 set :database, {adapter: "postgresql", encoding: 'unicode', database: "mediaweb"}
 
 enable :sessions
