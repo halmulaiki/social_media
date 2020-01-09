@@ -3,13 +3,16 @@ body {
   line-height: 1.8;
   margin: 0;
 }
+.fr{
+  background-image: url('/image/first.png') no-repeat center center fixed;
+}
 h2 {
   font-size: 24px;
   text-transform: uppercase;
   color: #303030;
   font-weight: 600;
   margin-bottom: 30px;
-}
+} 
 h4 {
   font-size: 19px;
   line-height: 1.375em;
