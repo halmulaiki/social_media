@@ -4,12 +4,22 @@ require "sinatra/flash"
 
 require"./models"
 
-set :database, {adapter: "postgresql", encoding: 'unicode', database: "mediaweb"}
+
+
+configure :development do
+  set :database, {adapter: "postgresql", encoding: 'unicode', database: "mediaweb"}
+end
+
+configure :production do
+  set :database, {url:ENV['DATABASE_URL']}
+end
+
 
 enable :sessions
 
 
 get '/' do
+
     erb :first
  end
 get '/login' do
