@@ -3,9 +3,7 @@ body {
   line-height: 1.8;
   margin: 0;
 }
-.fr{
-  background-image: url('/image/first.png') no-repeat center center fixed;
-}
+
 h2 {
   font-size: 24px;
   text-transform: uppercase;
@@ -40,7 +38,7 @@ h4 {
 }
 .navbar {
   display:grid;
-  grid-template-columns: 100px 100px 100px 100px 100px 100px;
+  grid-template-columns: 100px 100px 100px 100px 100px 100px 100px;
  justify-content: flex-start;
   font-size: 12px !important;
   line-height: 1.42857143 !important;
@@ -186,4 +184,13 @@ input[type=text], input[type=password], input[type=email] , input[type=date]{
 }
 #top img{
   src:'/image/logo.png' ;
+}
+.post {
+text-align: center;
+}
+#posts {
+  background-color:#297ca0;
+  color:white;
+  padding: 10px;
+  margin: 14px 354px 24px 380px;
 }

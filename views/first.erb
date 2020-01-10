@@ -1,11 +1,52 @@
+<div id='first'>
+<div>
+<h1>Welcome to Rumbler</h1>
+
+</div>
+
+
 <div class="fr">
 
 
 
-<div><a href="/signup">Sign Up</a></div>
-<div><a href = "/login">Login</a></div>
-<div></div>
-<div></div>
- 
+<div class="button"><a href="/signup">Sign Up</a></div>
+<div class="button"><a href = "/login">Login</a></div>
+
 
 </div>
+</div>
+<style>
+#first{
+    margin:0;
+   margin-top: -21px;
+   background-image: url("/image/first.png") ; 
+}
+.fr{
+    padding:425px;
+    display: grid;
+    grid-template-columns:100px 100px;
+    
+    grid-gap:10px;
+    justify-content:center;
+    height:100vh;
+}
+.button {
+  background-color: #4CAF50;
+
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100px;
+  opacity: 0.9;
+  text-align: center;
+  height:54px;
+}
+.button a{
+    text-decoration:none;
+      color: white;
+}
+.button:hover {
+  opacity:1;
+}
+</style>

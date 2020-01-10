@@ -2,12 +2,13 @@
 <% if  @posts != nil%>
   <% for post in @posts.reverse %>
   <div class="post">
-    <h1><%= post.username %></h1>
-    <h2><%= post.title %></h2>
-    <h3><%= post.body %></h3>
-    
-    <p><%= post.time%>
-
+    <p><%= post.username %></p>
+    <div id="posts">
+    <h3>Title:   <%= post.title %></h3>
+    <h2>Content:  <%= post.body %></h2>
+    </div>
+    <p>created at  <%= post.time%></p>
+   
   </div>
   <% end %>
   <% end %>
