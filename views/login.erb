@@ -5,9 +5,7 @@
 
 
 
-<% if flash[:error]%>
-  <%flash[:error]%>
-<%end%>
+
 
 
 
@@ -25,3 +23,6 @@
 <div class="signif"><p class="">Don't have an account? <a href="/signup">Sign up</a></p></div>
 </div>
 
+<% if flash[:error]%>
+  <%flash[:error]%>
+<%end%>

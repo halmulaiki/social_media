@@ -4,12 +4,22 @@ require "sinatra/flash"
 
 require"./models"
 
-set :database, {adapter: "postgresql", encoding: 'unicode', database: "mediaweb"}
+
+
+configure :development do
+  set :database, {adapter: "postgresql", encoding: 'unicode', database: "mediaweb"}
+end
+
+configure :production do
+  set :database, {url:ENV['DATABASE_URL']}
+end
+
 
 enable :sessions
 
 
 get '/' do
+
     erb :first
  end
 get '/login' do
@@ -18,13 +28,19 @@ end
 post '/login'do
  @user = User.find_by(username: params[:username])
  given_password = params[:password]
- if @user.password == given_password
-    session[:user_id]= @user.id 
-    redirect %(/profile/#{@user.lastname})
+ if !@user.nil?
+    if @user.password == given_password
+       session[:user_id]= @user.id 
+       redirect %(/profile/#{@user.lastname})
     else 
-    flash[:error] = "Correct email, but wrong password. "
- 
-  end 
+       flash[:error] = "Correct email, but wrong password. "
+    end
+ else
+  
+  flash[:error] = "Account Doesn't exists. "
+
+   
+end 
 
 end
 get '/logout'do
@@ -78,14 +94,6 @@ end
 erb :posts
 end
 
-# post '/write'do
-# @user = User.find(session[:user_id])
-# @post =Post.new(params[:post])
-# if @post.valid?
-#   @post.save
-# end
-# end
-
 
 
 
@@ -104,7 +112,7 @@ end
 post '/feed'do
 @user = User.find(session[:user_id])
 @post =Post.new(title: params[:title], body: params[:body] , username: @user.username)
-@post.time= Time.now
+@post.time= Time.now.asctime
 if @post.valid?
   @post.save
   @posts =Post.all
@@ -112,4 +120,25 @@ if @post.valid?
 else
 redirect '/post'
 end
+end
+get '/delete' do
+  if (session[:user_id]==nil)
+   
+    redirect '/login'
+  end
+
+  given_password = params[:password]
+  
+  erb :delete
+end
+post'/delete' do
+  user = User.find_by(id: session[:user_id])
+  puts "asel #{user.id.class}"
+  puts "asel #{session[:user_id].class}"
+  puts "asel #{user.id}"
+
+  user.destroy
+  session.clear
+  # erb :delete
+  redirect '/'
 end
