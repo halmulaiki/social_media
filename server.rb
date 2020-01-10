@@ -110,8 +110,8 @@ erb :feed
 end
 
 post '/feed'do
-@user = User.find(session[:user_id])
-@post =Post.new(title: params[:title], body: params[:body] , username: @user.username)
+
+@post =Post.new(title: params[:title], body: params[:body] , user_id: session[:user_id])
 @post.time= Time.now.asctime
 if @post.valid?
   @post.save
