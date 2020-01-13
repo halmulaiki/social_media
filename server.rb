@@ -105,7 +105,7 @@ if (session[:user_id]==nil)
 end
 @user = User.find(session[:user_id])
 @posts =Post.all
-@username = post.user.username
+
 
 erb :feed
 end
