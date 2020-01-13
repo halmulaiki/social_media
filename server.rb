@@ -34,11 +34,12 @@ post '/login'do
        redirect %(/profile/#{@user.lastname})
     else 
        flash[:error] = "Correct email, but wrong password. "
+       redirect '/login'
     end
  else
   
   flash[:error] = "Account Doesn't exists. "
-
+  redirect '/login'
    
 end 
 
@@ -104,13 +105,16 @@ if (session[:user_id]==nil)
 end
 @user = User.find(session[:user_id])
 @posts =Post.all
-@lastname = @user.lastname
+
 
 erb :feed
 end
 
 post '/feed'do
+if (session[:user_id]==nil)
 
+  redirect '/login'
+end
 @post =Post.new(title: params[:title], body: params[:body] , user_id: session[:user_id])
 @post.time= Time.now.asctime
 if @post.valid?
@@ -121,6 +125,7 @@ else
 redirect '/post'
 end
 end
+
 get '/delete' do
   if (session[:user_id]==nil)
    
@@ -132,6 +137,10 @@ get '/delete' do
   erb :delete
 end
 post'/delete' do
+  if (session[:user_id]==nil)
+
+    redirect '/login'
+  end
   user = User.find_by(id: session[:user_id])
   puts "asel #{user.id.class}"
   puts "asel #{session[:user_id].class}"
@@ -139,6 +148,28 @@ post'/delete' do
 
   user.destroy
   session.clear
+  # erb :delete
+  redirect '/'
+end
+get '/change-password' do
+  if (session[:user_id]==nil)
+   
+    redirect '/login'
+  end
+
+
+  erb :change
+end
+post'/change-password' do
+  if (session[:user_id]==nil)
+
+    redirect '/login'
+  end
+  user = User.find_by(id: session[:user_id])
+
+
+  user.update
+ 
   # erb :delete
   redirect '/'
 end

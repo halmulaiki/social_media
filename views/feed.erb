@@ -1,13 +1,13 @@
-
 <% if  @posts != nil%>
   <% for post in @posts.reverse %>
   <div class="post">
-    <p><%= post.username %></p>
+    
     <div id="posts">
     <h3>Title:   <%= post.title %></h3>
     <h2>Content:  <%= post.body %></h2>
     </div>
-    <p>created at  <%= post.time%></p>
+    <p>Created by  <%= post.user.username  %></p>
+    <p> at  <%= post.time%></p>
    
   </div>
   <% end %>
