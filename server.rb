@@ -105,7 +105,7 @@ if (session[:user_id]==nil)
 end
 @user = User.find(session[:user_id])
 @posts =Post.all
-
+@username = post.user.username
 
 erb :feed
 end
@@ -115,6 +115,7 @@ if (session[:user_id]==nil)
 
   redirect '/login'
 end
+
 @post =Post.new(title: params[:title], body: params[:body] , user_id: session[:user_id])
 @post.time= Time.now.asctime
 if @post.valid?
