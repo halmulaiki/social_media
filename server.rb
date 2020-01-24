@@ -105,6 +105,7 @@ if (session[:user_id]==nil)
 end
 @user = User.find(session[:user_id])
 @posts =Post.all
+@lastname = @user.lastname
 
 
 erb :feed
@@ -115,7 +116,8 @@ if (session[:user_id]==nil)
 
   redirect '/login'
 end
-
+@user = User.find(session[:user_id])
+@lastname = @user.lastname
 @post =Post.new(title: params[:title], body: params[:body] , user_id: session[:user_id])
 @post.time= Time.now.asctime
 if @post.valid?
@@ -132,7 +134,7 @@ get '/delete' do
    
     redirect '/login'
   end
-
+  
   given_password = params[:password]
   
   erb :delete
@@ -143,9 +145,15 @@ post'/delete' do
     redirect '/login'
   end
   user = User.find_by(id: session[:user_id])
-  puts "asel #{user.id.class}"
-  puts "asel #{session[:user_id].class}"
-  puts "asel #{user.id}"
+  given_password = params[:password]
+if @user.password == given_password
+    session[:user_id]= @user.id 
+   
+ else 
+  flash[:error] = " wrong password, please retry again "
+  
+  redirect '/delete'
+ end
 
   user.destroy
   session.clear
@@ -167,9 +175,10 @@ post'/change-password' do
     redirect '/login'
   end
   user = User.find_by(id: session[:user_id])
+ 
+  user.update(password: params[:password])
 
 
-  user.update
  
   # erb :delete
   redirect '/'
