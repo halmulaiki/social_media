@@ -1,13 +1,16 @@
-FROM ruby:2.3.2
+FROM ruby:2.3
 
-WORKDIR /app
-ADD Gemfile /app/Gemfile
-ADD Gemfile.lock /app/Gemfile.lock
-RUN bundle install --system
+RUN apt-get update -qq && apt-get install -y build-essential
 
-ADD . /app
-RUN bundle install --system
+ENV APP_HOME /app
+RUN mkdir $APP_HOME
+WORKDIR $APP_HOME
+
+ADD Gemfile* $APP_HOME/
+RUN bundle install --without development test
+
+ADD . $APP_HOME
 
 EXPOSE 4567
 
-CMD ["ruby", "hi.rb"]
+CMD ["bundle", "exec", "rackup", "--host", "0.0.0.0", "-p", "4567"]
