@@ -1,5 +1,5 @@
 FROM ruby:2.3
-
+RUN gem install bundler -v 2.0.2
 RUN apt-get update -qq && apt-get install -y build-essential
 
 ENV APP_HOME /app
